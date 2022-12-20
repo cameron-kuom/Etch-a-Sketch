@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: mediumpurple;
+    height: 100vh;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 500px;
+}
+
+.grid-div {
+    width: 31.25px;
+    height: 31.25px;
+    background-color: white;
+}
