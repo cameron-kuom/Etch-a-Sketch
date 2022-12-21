@@ -28,9 +28,7 @@ function getBackgroundChoice(gridDiv){
     buttons[3].addEventListener("click", () => {
         const gridDivAll = document.querySelectorAll(".grid-div");
         gridDivAll.forEach(div => div.style.backgroundColor = "white");
-        gridDiv.addEventListener("mouseover", () => {
-            gridDiv.style.backgroundColor = "white"
-        })
+        gridDiv.addEventListener("mouseover", () => gridDiv.style.backgroundColor = "white")
     });
 }
 
