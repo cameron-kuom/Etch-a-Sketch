@@ -31,4 +31,9 @@ function getBackgroundChoice(gridDiv){
     });
 }
 
+buttons.forEach(button => button.addEventListener("click", (e) => {
+    buttons.forEach(button => button.classList.remove("btn-border"));
+    e.target.classList.add("btn-border");
+}))
+
 createGrid(16);
