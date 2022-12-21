@@ -12,9 +12,7 @@ function createGrid(gridSize){
 
 function getBackgroundChoice(gridDiv){
     buttons[0].addEventListener("click", () => {
-        gridDiv.addEventListener("mouseover", () => {
-            gridDiv.style.background = "black"
-        })
+        gridDiv.addEventListener("mouseover", () => gridDiv.style.background = "black")
     });
     buttons[1].addEventListener("click", () => {
         gridDiv.addEventListener("mouseover", () => {
@@ -25,6 +23,11 @@ function getBackgroundChoice(gridDiv){
         })
     });
     buttons[2].addEventListener("click", () => {
+        gridDiv.addEventListener("mouseover", () => gridDiv.style.backgroundColor = "white")
+    });
+    buttons[3].addEventListener("click", () => {
+        const gridDivAll = document.querySelectorAll(".grid-div");
+        gridDivAll.forEach(div => div.style.backgroundColor = "white");
         gridDiv.addEventListener("mouseover", () => {
             gridDiv.style.backgroundColor = "white"
         })
@@ -33,7 +36,9 @@ function getBackgroundChoice(gridDiv){
 
 buttons.forEach(button => button.addEventListener("click", (e) => {
     buttons.forEach(button => button.classList.remove("btn-border"));
-    e.target.classList.add("btn-border");
+    if (e.target !== buttons[3]){
+        e.target.classList.add("btn-border");
+    }
 }))
 
 createGrid(16);
