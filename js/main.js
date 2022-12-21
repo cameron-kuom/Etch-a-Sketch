@@ -11,30 +11,24 @@ function createGrid(gridSize){
 }
 
 function getBackgroundChoice(gridDiv){
-        buttons[0].addEventListener("click", () => {
-            gridDiv.addEventListener("mouseover", getBlackBackground)
+    buttons[0].addEventListener("click", () => {
+        gridDiv.addEventListener("mouseover", () => {
+            gridDiv.style.background = "black"
         })
-        buttons[1].addEventListener("click", () => {
-            gridDiv.addEventListener("mouseover", getRgbBackground)
+    });
+    buttons[1].addEventListener("click", () => {
+        gridDiv.addEventListener("mouseover", () => {
+            let x = Math.floor(Math.random()*255);
+            let y = Math.floor(Math.random()*255);
+            let z = Math.floor(Math.random()*255);
+            gridDiv.style.backgroundColor = `rgb(${x},${y},${z})`; 
         })
-        buttons[2].addEventListener("click", () => {
-            gridDiv.addEventListener("mouseover", getWhiteBackground)
+    });
+    buttons[2].addEventListener("click", () => {
+        gridDiv.addEventListener("mouseover", () => {
+            gridDiv.style.backgroundColor = "white"
         })
-}
-
-function getBlackBackground(){
-    this.style.backgroundColor = "black";
-}
-
-function getRgbBackground(){
-    let x = Math.floor(Math.random()*255);
-    let y = Math.floor(Math.random()*255);
-    let z = Math.floor(Math.random()*255);
-    this.style.backgroundColor = `rgb(${x},${y},${z})`;
-}
-
-function getWhiteBackground(){
-    this.style.backgroundColor = "white";
+    });
 }
 
 createGrid(16);
