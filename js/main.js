@@ -1,20 +1,44 @@
 const gridContainer = document.querySelector(".grid-container");
-const buttons = document.querySelectorAll(".btn");
+const buttonsLeft = document.querySelectorAll(".btn-left");
+const buttonsRight = document.querySelectorAll(".btn-right");
 
 function createGrid(gridSize){
     for (let i = 0; i < gridSize*gridSize; i++){
         const gridDiv = document.createElement("div");
         gridDiv.classList.add("grid-div");
+        getGridDiv(gridDiv, gridSize)
         gridContainer.appendChild(gridDiv);
-        getBackgroundChoice(gridDiv);
+        getBackgroundChoice(gridDiv, gridSize);
     }
 }
 
-function getBackgroundChoice(gridDiv){
-    buttons[0].addEventListener("click", () => {
+function getGridDiv(gridDiv, gridSize){
+    let gridDivSize = (700 / gridSize);
+    gridDiv.style.width = `${gridDivSize}px`;
+    gridDiv.style.height = `${gridDivSize}px`;
+
+    buttonsRight[0].addEventListener("click", (e) => {
+        if (e.target == buttonsRight[0]){
+            gridDivSize = (700 / gridSize) - 2;
+            gridDiv.style.border = "1px solid mediumpurple";
+            gridDiv.style.width = `${gridDivSize}px`;
+            gridDiv.style.height = `${gridDivSize}px`;
+            buttonsRight[0].classList.add("btn-border");
+        } else if (gridDiv.style.border !== "none"){
+            gridDivSize = (700 / gridSize);
+            gridDiv.style.border = "none";
+            gridDiv.style.width = `${gridDivSize}px`;
+            gridDiv.style.height = `${gridDivSize}px`;
+            buttonsRight[0].classList.remove("btn-border");
+        }
+    })
+}
+
+function getBackgroundChoice(gridDiv, gridSize){
+    buttonsLeft[0].addEventListener("click", () => {
         gridDiv.addEventListener("mouseover", () => gridDiv.style.background = "black")
     });
-    buttons[1].addEventListener("click", () => {
+    buttonsLeft[1].addEventListener("click", () => {
         gridDiv.addEventListener("mouseover", () => {
             let x = Math.floor(Math.random()*255);
             let y = Math.floor(Math.random()*255);
@@ -22,19 +46,25 @@ function getBackgroundChoice(gridDiv){
             gridDiv.style.backgroundColor = `rgb(${x},${y},${z})`; 
         })
     });
-    buttons[2].addEventListener("click", () => {
+    buttonsLeft[2].addEventListener("click", () => {
         gridDiv.addEventListener("mouseover", () => gridDiv.style.backgroundColor = "white")
     });
-    buttons[3].addEventListener("click", () => {
+    buttonsLeft[3].addEventListener("click", () => {
         const gridDivAll = document.querySelectorAll(".grid-div");
         gridDivAll.forEach(div => div.style.backgroundColor = "white");
         gridDiv.addEventListener("mouseover", () => gridDiv.style.backgroundColor = "white")
+
+        gridDivSize = (700 / gridSize);
+            gridDiv.style.border = "none";
+            gridDiv.style.width = `${gridDivSize}px`;
+            gridDiv.style.height = `${gridDivSize}px`;
+            buttonsRight[0].classList.remove("btn-border");
     });
 }
 
-buttons.forEach(button => button.addEventListener("click", (e) => {
-    buttons.forEach(button => button.classList.remove("btn-border"));
-    if (e.target !== buttons[3]){
+buttonsLeft.forEach(button => button.addEventListener("click", (e) => {
+    buttonsLeft.forEach(button => button.classList.remove("btn-border"));
+    if (e.target !== buttonsLeft[3]){
         e.target.classList.add("btn-border");
     }
 }))

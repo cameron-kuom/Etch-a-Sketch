@@ -19,7 +19,7 @@ body {
     gap: 30px;
 }
 
-.btn-container {
+.left-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,14 +43,13 @@ body {
 .grid-container {
     display: flex;
     flex-wrap: wrap;
-    width: 720px;
-    height: 720px;
+    /* border: 2px solid black; */
+    width: 700px;
+    height: 700px;
 
 }
 
 .grid-div {
-    width: 45px;
-    height: 45px;
     background-color: white;
 }
 
