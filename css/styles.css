@@ -19,7 +19,7 @@ body {
     gap: 30px;
 }
 
-.left-container {
+.left-container, .right-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,6 +51,11 @@ body {
 .grid-div {
     background-color: white;
 }
+
+/* .right-container {
+    display: flex;
+    flex-direction: column;
+} */
 
 .footer {
     display: flex;

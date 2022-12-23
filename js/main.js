@@ -1,9 +1,11 @@
-const gridContainer = document.querySelector(".grid-container");
+const contentContainer = document.querySelector(".content-container");
+const rightContainer = document.querySelector(".right-container");
+let gridContainer = document.querySelector(".grid-container");
 const buttonsLeft = document.querySelectorAll(".btn-left");
 const buttonsRight = document.querySelectorAll(".btn-right");
 
 // Creates grid and gridDiv dimensions
-function createGrid(gridSize){
+function getStartingGrid(gridSize){
     for (let i = 0; i < gridSize*gridSize; i++){
         const gridDiv = document.createElement("div");
         gridDiv.classList.add("grid-div");
@@ -13,6 +15,26 @@ function createGrid(gridSize){
         gridDiv.style.height = `${gridDivSize}px`;
         getButtonInput(gridDiv, gridSize);
     }
+}
+
+function getNewGrid(){
+    buttonsRight[1].addEventListener("click", () => {
+        gridContainer.remove("div");
+        gridContainer = document.createElement("div");
+        gridContainer.classList.add("grid-container");
+        contentContainer.insertBefore(gridContainer, rightContainer);
+
+        let gridSize = window.prompt("How big?")
+        for (let i = 0; i < gridSize*gridSize; i++){
+            const gridDiv = document.createElement("div");
+            gridDiv.classList.add("grid-div");
+            gridContainer.appendChild(gridDiv);
+            let gridDivSize = (700 / gridSize);
+            gridDiv.style.width = `${gridDivSize}px`;
+            gridDiv.style.height = `${gridDivSize}px`;
+            getButtonInput(gridDiv, gridSize);
+        }
+    })
 }
 
 function getButtonInput(gridDiv, gridSize){
@@ -75,4 +97,5 @@ function getButtonInput(gridDiv, gridSize){
     }));
 }
 
-createGrid(16);
+getStartingGrid(16);
+getNewGrid();
